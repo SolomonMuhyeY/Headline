@@ -1,0 +1,14 @@
+.nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: #000;
+  color: bisque;
+  padding: 12px 14px;
+}
+.nav ul {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 12px;
+  border: 1px dashed;
+}
