@@ -1,15 +1,15 @@
 import React from "react";
+import { getLatestNews } from "../../../lib";
+import NewsCard from "../../../components/NewsCard";
 
 const LatestNewsPage = () => {
+  const latestNews = getLatestNews();
   return (
     <div>
       <h1>Latest News</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, fugit.
-        Eligendi non atque quasi laudantium reprehenderit at quia, obcaecati
-        quos nobis repellendus voluptates nihil suscipit veritatis vitae
-        assumenda. Nesciunt, eaque!
-      </p>
+      {latestNews.map((news) => (
+        <NewsCard news={news} />
+      ))}
     </div>
   );
 };
