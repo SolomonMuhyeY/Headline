@@ -8,7 +8,7 @@ const ArchivePage = () => {
     <div className='archive'>
       <div className='archive-year'>
         {years.map((year) => (
-          <Link key={year} href={`/archive/${year}`}>
+          <Link key={crypto.randomUUID()} href={`/archive/${year}`}>
             <small>{year}</small>
           </Link>
         ))}
