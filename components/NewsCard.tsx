@@ -9,15 +9,15 @@ const NewsCard = ({ news }: { news: NewsProps }) => {
     <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
       <Link
         href={`news/${slug}`}
-        className='block hover:opacity-75 transition duration-300 ease-in-out'
+        className='block opacity-85 hover:opacity-100 transition duration-300 ease-in-out'
       >
-        <div className='relative h-60 overflow-hidden'>
+        <div className='relative h-72 w-/34 overflow-hidden'>
           <Image
             src={`/news/${image}`}
-            layout='fill'
-            objectFit='cover'
             alt={title}
-            priority
+            width={500}
+            height={500}
+            className='object-fit h-full w-full'
           />
         </div>
         <div className='p-4'>
