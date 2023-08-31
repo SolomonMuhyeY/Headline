@@ -52,6 +52,6 @@ h2 {
   cursor: pointer;
 }
 .archive-year small:hover {
-  color: gold;
+  color: coral;
   border: 1px solid;
 }
