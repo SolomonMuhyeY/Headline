@@ -1,11 +1,12 @@
 import React from "react";
-import { getFullYear, getNewsForYear } from "../../../../lib";
 import Link from "next/link";
-import NewsCard from "../../../../components/NewsCard";
+import { getFullYear, getMonthsForYear, getNewsForYear } from "@/lib";
+import NewsCard from "@/components/NewsCard";
 
 const page = ({ params }: { params: { slug: string } }) => {
-  const years = getFullYear()!;
   const selectedYear = params.slug;
+  const years = getFullYear()!;
+  const months = getMonthsForYear(selectedYear);
   let filteredNews;
   if (selectedYear) {
     filteredNews = getNewsForYear(selectedYear);
@@ -22,8 +23,13 @@ const page = ({ params }: { params: { slug: string } }) => {
       </header>
       <main className='main'>
         <h2>{params.slug}</h2>
+        <div className='archive-month'>
+          {months.map((mon) => (
+            <small key={mon}>{mon}</small>
+          ))}
+        </div>
         {filteredNews?.map((news) => (
-          <NewsCard news={news} />
+          <NewsCard key={crypto.randomUUID()} news={news} />
         ))}
       </main>
     </div>
