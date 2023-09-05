@@ -1,6 +1,11 @@
+import { monthNames } from "@/data/months";
 import { DUMMY_NEWS } from "@/data/sample";
 
-export const getFullYear = () => {
+export const getAllNews = () => {
+  return DUMMY_NEWS;
+};
+
+export const getAvailableNewsYear = () => {
   const newsArr = DUMMY_NEWS;
   const years: number[] = [];
 
@@ -35,25 +40,15 @@ export const getMonthsForYear = (year: string): string[] => {
     (a: number, b: number) => a - b
   );
 
-  const monthNames: string[] = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   const monthNamesSorted: string[] = sortedMonths.map(
     (month) => monthNames[month - 1]
   ); // Convert month numbers to names
 
   return monthNamesSorted; // Return array of month names
+};
+
+export const getNewsForMonth = (month: string) => {
+  return month;
 };
 
 export const getLatestNews = () => {
