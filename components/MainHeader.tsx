@@ -1,18 +1,19 @@
 import Link from "next/link";
 import "./mainHeader.css";
 import React from "react";
+import NavLink from "./NavLink";
 const MainHeader = () => {
   return (
     <nav className='nav'>
       <ul>
         <li>
-          <Link href='/'>Home</Link>
+          <NavLink href='/home'>Home</NavLink>
         </li>
         <li>
-          <Link href='/news'>News</Link>
+          <NavLink href='/news'>News</NavLink>
         </li>
         <li>
-          <Link href='/archive'>Archive</Link>
+          <NavLink href='/archive'>Archive</NavLink>
         </li>
       </ul>
     </nav>
