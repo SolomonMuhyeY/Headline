@@ -8,16 +8,16 @@ import {
   getNewsForYear,
 } from "@/lib";
 import NewsCard from "@/components/NewsCard";
+import { NewsProps } from "@/types";
 
 const Page = ({ params }: { params: { slug: string } }) => {
   const selectedYear = params.slug?.[0];
   const selectedMonth = params.slug?.[1];
   const [links, setLinks] = useState<string[] | number[]>([]);
   const [years, setYears] = useState<number[]>([]);
-  const [filteredNews, setFilteredNews] = useState<any[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsProps[]>([]);
 
   useEffect(() => {
-    // Fetch available news years
     const availableYears = getAvailableNewsYear();
     setYears(availableYears);
 
@@ -29,12 +29,17 @@ const Page = ({ params }: { params: { slug: string } }) => {
       setLinks(monthsForYear);
     } else if (selectedYear && selectedMonth) {
       setLinks([]);
-    } else if (selectedMonth) {
       const allNews = getAllNews();
       setFilteredNews(allNews);
     }
   }, [selectedYear, selectedMonth]);
-
+  // HANDLE INVALID FILTER
+  if (
+    (selectedYear && !getAvailableNewsYear().includes(+selectedYear)) ||
+    (selectedMonth && !getMonthsForYear(selectedYear).includes(selectedMonth))
+  ) {
+    throw new Error("Invalid Filter!");
+  }
   return (
     <div>
       <header className='archive-year'>
