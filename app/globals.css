@@ -39,19 +39,22 @@ h1,
 h2 {
   margin: 2rem;
 }
-.archive-year {
+.archive-year,
+.archive-month {
   display: flex;
   justify-content: center;
   margin: 1rem;
   gap: 1rem;
 }
-.archive-year small {
+.archive-year small,
+.archive-month small {
   font-weight: bolder;
   border: 1px dashed;
   padding: 5px 17px;
   cursor: pointer;
 }
-.archive-year small:hover {
+.archive-year small:hover,
+.archive-month small:hover {
   color: coral;
   border: 1px solid;
 }
