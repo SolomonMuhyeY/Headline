@@ -2,6 +2,7 @@ import React from "react";
 import { DUMMY_NEWS } from "../../../data/sample";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 const NewsDetailPage = ({
   params,
@@ -12,20 +13,21 @@ const NewsDetailPage = ({
 }) => {
   const { news: newsSlug } = params;
   const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
-
   if (!newsItem) notFound();
 
   return (
     <div className='max-w-3xl mx-auto px-4 py-8'>
       <h1 className='text-3xl font-bold mb-4'>{newsItem.title}</h1>
       <div className='relative h-80 w-3/4 mb-4'>
-        <Image
-          src={`/news/${newsItem.image}`}
-          alt={newsItem.title}
-          width={500}
-          height={500}
-          className='rounded-lg w-full h-full'
-        />
+        <Link href={`/news/${newsItem.slug}/image`}>
+          <Image
+            src={`/news/${newsItem.image}`}
+            alt={newsItem.title}
+            width={500}
+            height={500}
+            className='rounded-lg w-full h-full'
+          />
+        </Link>
       </div>
       <div className='flex items-center text-gray-500 mb-4'>
         <svg
