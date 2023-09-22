@@ -1,5 +1,5 @@
-import { DUMMY_NEWS } from "../../data/sample";
-import NewsCard from "../../components/NewsCard";
+import NewsCard from "@/components/NewsCard";
+import { DUMMY_NEWS } from "@/data/sample";
 
 const NewsPage = () => {
   const newsItem = DUMMY_NEWS.map((news) => (
