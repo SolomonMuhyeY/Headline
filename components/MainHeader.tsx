@@ -7,7 +7,7 @@ const MainHeader = () => {
     <nav className='nav'>
       <ul>
         <li>
-          <NavLink href='/home'>Home</NavLink>
+          <Link href='/'>Home</Link>
         </li>
         <li>
           <NavLink href='/news'>News</NavLink>
