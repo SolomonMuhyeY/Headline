@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
   const path = usePathname();
@@ -11,8 +10,8 @@ const NavLink = ({ href, children }: { href: string; children: ReactNode }) => {
     <Link
       className={
         path.startsWith(href)
-          ? "border-2 border-red-500 px-4 py-1.5"
-          : undefined
+          ? "bg-red-500 text-white px-4 py-1.5 rounded-md shadow-lg"
+          : "text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-1.5 rounded-md"
       }
       href={href}
     >
