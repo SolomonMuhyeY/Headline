@@ -14,11 +14,8 @@ const ArchiveLayout = ({
         <h1>ArchivePage</h1>
         {archive}
       </section>
-      <br /> <hr /> <br /> <hr /> <br />
-      <section>
-        <h2>LatestNewsPage</h2>
-        {latest}
-      </section>
+      <br /> <hr />
+      <section>{latest}</section>
     </div>
   );
 };
