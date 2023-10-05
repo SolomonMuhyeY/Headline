@@ -10,10 +10,7 @@ const ArchiveLayout = ({
 }) => {
   return (
     <div>
-      <section>
-        <h1>ArchivePage</h1>
-        {archive}
-      </section>
+      <section>{archive}</section>
       <br /> <hr />
       <section>{latest}</section>
     </div>
