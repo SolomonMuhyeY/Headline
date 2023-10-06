@@ -15,6 +15,7 @@ const ModalPage = ({
   const { news: newsSlug } = params;
   const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
   const route = useRouter();
+
   if (!newsItem) notFound();
 
   return (
@@ -28,13 +29,17 @@ const ModalPage = ({
             {newsItem.title}
           </h2>
           <div className='flex justify-center'>
-            <Image
-              src={`/news/${newsItem.image}`}
-              alt={newsItem.title}
-              width={550}
-              height={550}
-              className='rounded'
-            />
+            <div className='w-80 h-80'>
+              {" "}
+              {/* Fixed size container */}
+              <Image
+                src={`/news/${newsItem.image}`}
+                alt={newsItem.title}
+                width={500}
+                height={500}
+                className='rounded w-full h-full object-cover'
+              />
+            </div>
           </div>
         </div>
       </div>
