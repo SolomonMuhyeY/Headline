@@ -6,17 +6,15 @@ const NewsCard = ({ news }: { news: NewsProps }) => {
   const { title, image, slug, date, content } = news;
 
   return (
-    <div className='bg-white rounded-lg shadow-lg overflow-hidden'>
-      <Link
-        href={`news/${slug}`}
-        className='block opacity-85 hover:opacity-100 transition duration-300 ease-in-out'
-      >
+    <div className='bg-white w-5/6 sm:w-full rounded-lg shadow-lg overflow-hidden'>
+      <Link href={`news/${slug}`} className='block'>
         <div className='relative h-72'>
           <Image
             src={`/news/${image}`}
             alt={title}
-            layout='fill'
-            objectFit='cover'
+            width={500}
+            height={500}
+            className='object-cover w-full h-full'
           />
         </div>
         <div className='p-4'>
