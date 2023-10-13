@@ -110,3 +110,50 @@ export const DUMMY_NEWS: NewsProps[] = [
       "Countries navigate the complexities of economic recovery post-pandemic, facing both opportunities and obstacles.",
   },
 ];
+export const RELATED_NEWS: NewsProps[] = [
+  {
+    id: "rn1",
+    slug: "future-of-robotics",
+    title: "The Future of Robotics: Innovations and Applications",
+    image: "future_robotics.jpg",
+    date: "2025-06-18",
+    content:
+      "Advancements in robotics revolutionize industries with new automated solutions and collaborative robots.",
+  },
+  {
+    id: "rn2",
+    slug: "blockchain-technology",
+    title: "Blockchain Technology: Beyond Cryptocurrencies",
+    image: "blockchain.jpg",
+    date: "2025-08-02",
+    content:
+      "Blockchain evolves beyond cryptocurrencies, offering secure and decentralized solutions across various sectors.",
+  },
+  {
+    id: "rn3",
+    slug: "future-of-artificial-intelligence",
+    title: "The Future of Artificial Intelligence: Trends and Innovations",
+    image: "future_ai.jpg",
+    date: "2025-09-20",
+    content:
+      "AI continues to shape industries with advances in machine learning, natural language processing, and robotics.",
+  },
+  {
+    id: "rn4",
+    slug: "renewable-energy-technologies",
+    title: "Renewable Energy Technologies: Sustainable Solutions",
+    image: "renewable_energy.jpg",
+    date: "2025-11-12",
+    content:
+      "Renewable energy technologies play a crucial role in addressing climate change and promoting sustainable development.",
+  },
+  {
+    id: "rn5",
+    slug: "future-of-space-tourism",
+    title: "The Future of Space Tourism: Commercial Spaceflights",
+    image: "space_tourism.jpg",
+    date: "2026-01-05",
+    content:
+      "Space tourism industry expands with commercial spaceflights offering unique experiences beyond Earth's atmosphere.",
+  },
+];
