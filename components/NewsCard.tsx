@@ -6,7 +6,7 @@ const NewsCard = ({ news }: { news: NewsProps }) => {
   const { title, image, slug, date, content } = news;
 
   return (
-    <div className='bg-white w-5/6 sm:w-full rounded-lg shadow-lg overflow-hidden'>
+    <div className='bg-white w-3/4  md:w-full rounded-lg shadow-lg overflow-hidden'>
       <Link href={`news/${slug}`} className='block'>
         <div className='relative h-72'>
           <Image
@@ -17,7 +17,7 @@ const NewsCard = ({ news }: { news: NewsProps }) => {
             className='object-cover w-full h-full'
           />
         </div>
-        <div className='p-4'>
+        <div className='py-6 px-12'>
           <h3 className='text-xl font-semibold text-gray-800 mb-2 truncate'>
             {title}
           </h3>
