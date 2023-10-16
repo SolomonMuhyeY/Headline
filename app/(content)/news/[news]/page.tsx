@@ -17,7 +17,21 @@ const NewsDetailPage = ({
 
   return (
     <div className='max-w-3xl mx-auto px-4 py-8'>
-      <h1 className='text-3xl font-bold mb-4'>{newsItem.title}</h1>
+      <div className='flex justify-between items-center mb-8'>
+        <Link
+          href='/news'
+          className='text-blue-500 hover:text-blue-700 transition-colors'
+        >
+          ← Back to News
+        </Link>
+        <Link
+          href={`/news/${newsItem.slug}/share`}
+          className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'
+        >
+          Share This News
+        </Link>
+      </div>
+      <h1 className='text-3xl text-left font-bold mb-7'>{newsItem.title}</h1>
       <div className='relative h-80 w-full overflow-hidden mb-6'>
         <Link href={`/news/${newsItem.slug}/image`}>
           <Image
@@ -46,20 +60,6 @@ const NewsDetailPage = ({
       <p className='text-lg text-gray-700 leading-relaxed mb-6'>
         {newsItem.content}
       </p>
-      <div className='flex justify-between items-center mt-8'>
-        <Link
-          href='/news'
-          className='text-blue-500 hover:text-blue-700 transition-colors'
-        >
-          ← Back to News
-        </Link>
-        <Link
-          href={`/news/${newsItem.slug}/share`}
-          className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300'
-        >
-          Share This News
-        </Link>
-      </div>
     </div>
   );
 };
