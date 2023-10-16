@@ -58,3 +58,17 @@ h2 {
   color: coral;
   border: 1px solid;
 }
+/* skelton */
+.animate-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
