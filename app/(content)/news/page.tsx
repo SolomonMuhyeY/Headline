@@ -1,13 +1,36 @@
+"use client";
+import { useState, useEffect } from "react";
 import NewsCard from "@/components/NewsCard";
 import RelatedNews from "@/components/RelatedNews";
 import { DUMMY_NEWS } from "@/data/sample";
+import { NewsProps } from "@/types";
+import NewsCardSkeleton from "@/components/skeleton/NewsCardSkeleton";
 
 const NewsPage = () => {
-  const newsItems = DUMMY_NEWS.map((news) => (
-    <div key={news.id}>
-      <NewsCard news={news} />
-    </div>
-  ));
+  const [newsItems, setNewsItems] = useState<NewsProps[] | null>(null);
+
+  useEffect(() => {
+    // Simulate data fetching
+    setTimeout(() => {
+      setNewsItems(DUMMY_NEWS);
+    }, 0);
+  }, []);
+
+  const renderNewsItems = () => {
+    if (!newsItems) {
+      return Array.from({ length: 6 }).map((_, index) => (
+        <div key={index}>
+          <NewsCardSkeleton />
+        </div>
+      ));
+    }
+
+    return newsItems.map((news) => (
+      <div key={news.id}>
+        <NewsCard news={news} />
+      </div>
+    ));
+  };
 
   return (
     <div className='container mx-auto px-4 py-8'>
@@ -23,7 +46,7 @@ const NewsPage = () => {
 
         {/* Column for News Items */}
         <div className='grid mx-12 md:grid-cols-1 col-span-9 lg:grid-cols-2 gap-8'>
-          {newsItems}
+          {renderNewsItems()}
         </div>
       </div>
     </div>
