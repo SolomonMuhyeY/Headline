@@ -3,7 +3,8 @@ import { notFound, useRouter } from "next/navigation";
 import Image from "next/image";
 import React from "react";
 
-import { DUMMY_NEWS } from "@/data/sample";
+import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
+import { NewsProps } from "@/types";
 
 const ModalPage = ({
   params,
@@ -13,10 +14,13 @@ const ModalPage = ({
   };
 }) => {
   const { news: newsSlug } = params;
+  let selectedNews: NewsProps | null = null;
   const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
+  const relatedNews = RELATED_NEWS.find((news) => news.slug === newsSlug);
   const route = useRouter();
-
-  if (!newsItem) notFound();
+  if (newsItem) selectedNews = newsItem;
+  else if (relatedNews) selectedNews = relatedNews;
+  if (!selectedNews) notFound();
 
   return (
     <div
@@ -26,15 +30,13 @@ const ModalPage = ({
       <div className='bg-white shadow-md rounded-lg overflow-hidden max-w-lg mx-auto'>
         <div className='p-4 relative'>
           <h2 className='text-4xl text-gray-800 font-bold text-center mb-4'>
-            {newsItem.title}
+            {selectedNews.title}
           </h2>
           <div className='flex justify-center'>
-            <div className='w-80 h-80'>
-              {" "}
-              {/* Fixed size container */}
+            <div className='w-full h-80'>
               <Image
-                src={`/news/${newsItem.image}`}
-                alt={newsItem.title}
+                src={`/news/${selectedNews.image}`}
+                alt={selectedNews.title}
                 width={500}
                 height={500}
                 className='rounded w-full h-full object-cover'
