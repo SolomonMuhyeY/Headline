@@ -7,8 +7,8 @@ const NewsCard = ({ news }: { news: NewsProps }) => {
 
   return (
     <div className='bg-white w-3/4 md:w-full rounded-lg shadow-lg overflow-hidden group'>
-      <Link href={`news/${slug}`} passHref className='block'>
-        <div className='relative h-72'>
+      <Link href={`news/${slug}`} passHref>
+        <div className='relative h-80'>
           <Image
             src={`/news/${image}`}
             alt={title}
