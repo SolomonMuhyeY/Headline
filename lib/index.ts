@@ -1,8 +1,12 @@
 import { monthNames } from "@/data/months";
-import { DUMMY_NEWS } from "@/data/sample";
+import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
 
 export const getAllNews = () => {
   return DUMMY_NEWS;
+};
+
+export const getRelatedNews = () => {
+  return RELATED_NEWS;
 };
 
 export const getAvailableNewsYear = () => {
