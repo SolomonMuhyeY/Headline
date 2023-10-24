@@ -1,18 +1,20 @@
+"use client";
 import React from "react";
-import { DUMMY_NEWS } from "../../../../data/sample";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
+import { notFound, useRouter } from "next/navigation";
+import { NewsProps } from "@/types";
 
-const NewsDetailPage = ({
-  params,
-}: {
-  params: {
-    news: string;
-  };
-}) => {
+const NewsDetailPage = ({ params }: { params: { news: string } }) => {
+  const router = useRouter();
   const { news: newsSlug } = params;
-  const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
+  let newsItem: NewsProps | null = null;
+  const selectedNews = DUMMY_NEWS.find((news) => news.slug === newsSlug);
+  const relatedNews = RELATED_NEWS.find((news) => news.slug === newsSlug);
+  if (selectedNews) newsItem = selectedNews;
+  else if (relatedNews) newsItem = relatedNews;
+
   if (!newsItem) notFound();
 
   return (
