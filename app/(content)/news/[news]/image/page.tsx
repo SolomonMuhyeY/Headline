@@ -1,10 +1,12 @@
-import { notFound } from "next/navigation";
+"use client";
+import { notFound, useRouter } from "next/navigation";
 import Image from "next/image";
 import React from "react";
 
-import { DUMMY_NEWS } from "@/data/sample";
+import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
+import { NewsProps } from "@/types";
 
-const page = ({
+const ImagesPage = ({
   params,
 }: {
   params: {
@@ -12,21 +14,39 @@ const page = ({
   };
 }) => {
   const { news: newsSlug } = params;
+  let selectedNews: NewsProps | null = null;
   const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
-
-  if (!newsItem) notFound();
+  const relatedNews = RELATED_NEWS.find((news) => news.slug === newsSlug);
+  const route = useRouter();
+  if (newsItem) selectedNews = newsItem;
+  else if (relatedNews) selectedNews = relatedNews;
+  if (!selectedNews) notFound();
 
   return (
-    <div className='mx-12 flex justify-center flex-col'>
-      <h2 className='text-4xl font-bold'>Image</h2>
-      <Image
-        src={`/news/${newsItem.image}`}
-        alt={newsItem.title}
-        width={550}
-        height={550}
-      />
+    <div
+      onClick={route.back}
+      className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'
+    >
+      <div className='bg-white shadow-md rounded-lg overflow-hidden max-w-lg mx-auto'>
+        <div className='p-4 relative'>
+          <h2 className='text-4xl text-gray-800 font-bold text-center mb-4'>
+            {selectedNews.title}
+          </h2>
+          <div className='flex justify-center'>
+            <div className='w-full h-80'>
+              <Image
+                src={`/news/${selectedNews.image}`}
+                alt={selectedNews.title}
+                width={500}
+                height={500}
+                className='rounded w-full h-full object-cover'
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default page;
+export default ImagesPage;
