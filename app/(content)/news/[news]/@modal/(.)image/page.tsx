@@ -25,11 +25,11 @@ const ModalPage = ({
   return (
     <div
       onClick={route.back}
-      className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'
+      className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70'
     >
       <div className='bg-white shadow-md rounded-lg overflow-hidden max-w-lg mx-auto'>
         <div className='p-4 relative'>
-          <h2 className='text-4xl text-gray-800 font-bold text-center mb-4'>
+          <h2 className='text-2xl text-gray-800 font-bold text-center mb-4'>
             {selectedNews.title}
           </h2>
           <div className='flex justify-center'>
