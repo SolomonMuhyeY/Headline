@@ -18,7 +18,7 @@ const NewsDetailPage = ({ params }: { params: { news: string } }) => {
   if (!newsItem) notFound();
 
   return (
-    <div className='max-w-3xl mx-auto px-4 py-8'>
+    <div className='max-w-2xl mx-12 md:mx-auto px-4 py-8'>
       <div className='flex items-center mb-8'>
         <Link
           href='/news'
