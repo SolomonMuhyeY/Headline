@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -33,42 +32,5 @@ body {
   }
 }
 .main {
-  margin: 3rem 1rem;
-}
-h1,
-h2 {
-  margin: 2rem;
-}
-.archive-year,
-.archive-month {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-  gap: 1rem;
-}
-.archive-year small,
-.archive-month small {
-  font-weight: bolder;
-  border: 1px dashed;
-  padding: 5px 17px;
-  cursor: pointer;
-}
-.archive-year small:hover,
-.archive-month small:hover {
-  color: coral;
-  border: 1px solid;
-}
-/* skelton */
-.animate-pulse {
-  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.85;
-  }
-  50% {
-    opacity: 0.75;
-  }
+  margin: 3rem 0;
 }

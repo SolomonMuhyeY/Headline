@@ -6,6 +6,7 @@ import SmallNewsCardSkeleton from "./skeleton/SmallNewsCardSkeleton";
 import { NewsProps } from "@/types";
 
 const SmallNewsCard = ({ news }: { news: NewsProps }) => {
+  // console.log(news);
   const { title, image, slug } = news;
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +24,7 @@ const SmallNewsCard = ({ news }: { news: NewsProps }) => {
       {isLoading ? (
         <SmallNewsCardSkeleton />
       ) : (
-        <Link href={`news/${slug}`} passHref>
+        <Link href={`news/${slug}`}>
           <div className='relative h-28'>
             <Image
               src={`/news/${image}`}
