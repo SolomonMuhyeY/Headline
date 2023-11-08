@@ -1,9 +1,14 @@
+import { NewsProps } from "@/types";
 import SmallNewsCard from "./SmallNewsCard";
-import { getRelatedNews } from "@/lib";
 
-const RelatedNews = () => {
-  const relatedNewsData = getRelatedNews();
-  const relatedNews = relatedNewsData.map((news) => {
+const RelatedNews = async () => {
+  const response = await fetch("http://localhost:8080/related-news");
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch related news!");
+  }
+  const newsItems: NewsProps[] = await response.json();
+  const relatedNews = newsItems.map((news) => {
     return <SmallNewsCard key={news.id} news={news} />;
   });
   return (
