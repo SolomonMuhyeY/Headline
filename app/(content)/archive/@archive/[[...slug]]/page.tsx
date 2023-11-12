@@ -1,45 +1,34 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   getAllNews,
-  getAvailableNewsYear,
-  getMonthsForYear,
+  getAvailableNewsYears,
+  getAvailableYearMonths,
   getNewsForYear,
 } from "@/lib";
 import NewsCard from "@/components/NewsCard";
 import { NewsProps } from "@/types";
 
-const Page = ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: { slug: string } }) => {
   const selectedYear = params.slug?.[0];
   const selectedMonth = params.slug?.[1];
-  const [links, setLinks] = useState<string[]>([]);
-  const [years, setYears] = useState<number[]>([]);
-  const [filteredNews, setFilteredNews] = useState<NewsProps[]>([]);
+  let links: string[] = [];
+  let filteredNews: NewsProps[] = [];
+  const availableYears = await getAvailableNewsYears();
+  const monthsForYear = await getAvailableYearMonths(selectedYear);
 
-  useEffect(() => {
-    const availableYears = getAvailableNewsYear();
-    setYears(availableYears);
-
-    // Fetch filtered news and links based on the selected year and month
-    if (selectedYear && !selectedMonth) {
-      const newsForYear = getNewsForYear(selectedYear);
-      setFilteredNews(newsForYear);
-      const monthsForYear = getMonthsForYear(selectedYear);
-      setLinks(monthsForYear);
-    } else if (selectedYear && selectedMonth) {
-      setLinks([]);
-      const allNews = getAllNews();
-      setFilteredNews(allNews);
-    }
-  }, [selectedYear, selectedMonth]);
+  // Fetch filtered news and links based on the selected year and month
+  if (selectedYear && !selectedMonth) {
+    filteredNews = await getNewsForYear(selectedYear);
+    links = monthsForYear;
+  } else if (selectedYear && selectedMonth) {
+    links = [];
+    filteredNews = await getAllNews();
+  }
 
   // Handle invalid filter
   if (
-    (selectedYear && !getAvailableNewsYear().includes(+selectedYear)) ||
-    (selectedMonth &&
-      (!selectedYear ||
-        !getMonthsForYear(selectedYear).includes(selectedMonth)))
+    (selectedYear && !availableYears.includes(selectedYear)) ||
+    (selectedMonth && monthsForYear.includes(selectedMonth))
   ) {
     throw new Error("Invalid Filter!");
   }
@@ -63,7 +52,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
                   <small>{link}</small>
                 </Link>
               ))
-            : years.map((year) => (
+            : availableYears.map((year) => (
                 <Link
                   key={year}
                   href={`/archive/${year}`}
