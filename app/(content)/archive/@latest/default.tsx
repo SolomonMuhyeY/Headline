@@ -1,9 +1,9 @@
+import NewsCard from "@/components/NewsCard";
+import { getLatestNews } from "@/lib";
 import React from "react";
-import { getLatestNews } from "../../../../lib";
-import NewsCard from "../../../../components/NewsCard";
 
-const LatestNewsPage = () => {
-  const latestNews = getLatestNews();
+const LatestNewsPage = async () => {
+  const latestNews = await getLatestNews();
 
   return (
     <div className='container mx-auto px-4 py-8'>
