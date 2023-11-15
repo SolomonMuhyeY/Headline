@@ -1,12 +1,11 @@
-"use client";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import Image from "next/image";
-import React from "react";
 
-import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
 import { NewsProps } from "@/types";
+import { getNewsItem, getRelatedNewsItem } from "@/lib";
+import ImageModal from "@/components/ImageModal";
 
-const ImagesPage = ({
+const ImagesPage = async ({
   params,
 }: {
   params: {
@@ -15,18 +14,15 @@ const ImagesPage = ({
 }) => {
   const { news: newsSlug } = params;
   let selectedNews: NewsProps | null = null;
-  const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
-  const relatedNews = RELATED_NEWS.find((news) => news.slug === newsSlug);
-  const route = useRouter();
+  const newsItem = await getNewsItem(newsSlug);
+  const relatedNews = await getRelatedNewsItem(newsSlug);
+
   if (newsItem) selectedNews = newsItem;
   else if (relatedNews) selectedNews = relatedNews;
   if (!selectedNews) notFound();
 
   return (
-    <div
-      onClick={route.back}
-      className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50'
-    >
+    <ImageModal>
       <div className='bg-white shadow-md rounded-lg overflow-hidden max-w-lg mx-auto'>
         <div className='p-4 relative'>
           <h2 className='text-4xl text-gray-800 font-bold text-center mb-4'>
@@ -45,7 +41,7 @@ const ImagesPage = ({
           </div>
         </div>
       </div>
-    </div>
+    </ImageModal>
   );
 };
 
