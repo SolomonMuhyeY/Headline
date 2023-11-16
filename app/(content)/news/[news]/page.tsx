@@ -1,17 +1,14 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { DUMMY_NEWS, RELATED_NEWS } from "@/data/sample";
-import { notFound, useRouter } from "next/navigation";
-import { NewsProps } from "@/types";
+import { notFound } from "next/navigation";
+import { getNewsItem, getRelatedNewsItem } from "@/lib";
 
-const NewsDetailPage = ({ params }: { params: { news: string } }) => {
-  const router = useRouter();
+const NewsDetailPage = async ({ params }: { params: { news: string } }) => {
   const { news: newsSlug } = params;
-  let newsItem: NewsProps | null = null;
-  const selectedNews = DUMMY_NEWS.find((news) => news.slug === newsSlug);
-  const relatedNews = RELATED_NEWS.find((news) => news.slug === newsSlug);
+  let newsItem;
+  const selectedNews = await getNewsItem(newsSlug);
+  const relatedNews = await getRelatedNewsItem(newsSlug);
   if (selectedNews) newsItem = selectedNews;
   else if (relatedNews) newsItem = relatedNews;
 
